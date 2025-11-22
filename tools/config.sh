@@ -7,8 +7,8 @@ if [ -z "$IDF_PATH" ]; then
     export IDF_PATH="$PWD/esp-idf"
 fi
 
-if [ -z "$IDF_BRANCH" ]; then
-    IDF_BRANCH="release/v5.5"
+if [ -z $IDF_BRANCH ]; then
+    IDF_BRANCH="baseline-3.3.12+ewpa"
 fi
 
 if [ -z "$AR_PR_TARGET_BRANCH" ]; then
@@ -31,7 +31,7 @@ if [ -z "$CHIP_VARIANT" ]; then
 fi
 
 # Owner of the target ESP32 Arduino repository
-AR_USER="${GITHUB_REPOSITORY_OWNER:-espressif}"
+AR_USER="${GITHUB_REPOSITORY_OWNER:-ewpa}"
 
 # The full name of the repository
 AR_REPO="$AR_USER/arduino-esp32"
