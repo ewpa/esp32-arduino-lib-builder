@@ -11,13 +11,16 @@ TINYUSB_REPO_DIR="$AR_COMPS/arduino_tinyusb/tinyusb"
 TINYUSB_PATCH_DIR="$AR_PATCHES/tinyusb"
 if [ ! -d "$TINYUSB_REPO_DIR" ]; then
     git clone "$TINYUSB_REPO_URL" "$TINYUSB_REPO_DIR"
+    cd "$TINYUSB_REPO_DIR"
+    git checkout fad6bd546fa6cb1b5fab82121cf5db436a3c38bb
+    cd -
 else
     # The clone is build output, not a workspace: drop the patches of the previous run,
     # and anything they left behind, so pull --ff-only does not trip over them.
     git -C "$TINYUSB_REPO_DIR" reset --hard && \
-    git -C "$TINYUSB_REPO_DIR" clean -fd && \
-    git -C "$TINYUSB_REPO_DIR" fetch && \
-    git -C "$TINYUSB_REPO_DIR" pull --ff-only
+    git -C "$TINYUSB_REPO_DIR" clean -fd
+    #git -C "$TINYUSB_REPO_DIR" fetch
+    #git -C "$TINYUSB_REPO_DIR" pull --ff-only
 fi
 if [ $? -ne 0 ]; then exit 1; fi
 
